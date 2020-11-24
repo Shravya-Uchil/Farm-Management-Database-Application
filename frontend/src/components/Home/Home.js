@@ -4,15 +4,16 @@ import { Redirect } from "react-router";
 
 class Home extends Component {
   render() {
-    let redirectVar = null;
-    if (!cookie.load("cookie")) {
-      redirectVar = <Redirect to="/login" />;
-    }
+    // let redirectVar = null;
+    // if (!cookie.load("cookie")) {
+    //   redirectVar = <Redirect to="/Login" />;
+    // }
     return (
       <div className="container">
-        {redirectVar}
+        {/* {redirectVar} */}
         <div>
-          <h1>Awesome Farms</h1>
+          <h1>Smithfield Farms</h1>
+          <p>Welcome to the Farm Management Webpage</p>
         </div>
       </div>
     );
