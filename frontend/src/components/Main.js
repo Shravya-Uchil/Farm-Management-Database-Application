@@ -1,22 +1,14 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import Login from "./Login/Login";
-import Signup from "./Signup/Signup";
-import Home from "./Home/Home";
-
-//Create a Main Component
-class Main extends Component {
-  render() {
+import React from 'react';
+ 
+import { NavLink } from 'react-router-dom';
+ 
+const Main = () => {
     return (
-      <div>
-        {/*Render Different Component based on Route*/}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />        
-        <Route path="/home" component={Home} />
-        
-      </div>
+       <div>
+          <NavLink to="/Home">Home </NavLink>
+          <NavLink to="/Login">Login </NavLink>
+          <NavLink to="/Signup">Signup </NavLink>
+       </div>
     );
-  }
 }
-//Export The Main Component
 export default Main;
