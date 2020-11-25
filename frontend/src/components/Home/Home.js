@@ -11,10 +11,8 @@ class Home extends Component {
     return (
       <div className="container">
         {/* {redirectVar} */}
-        <div>
-          <h1>Smithfield Farms</h1>
-          <p>Welcome to the Farm Management Webpage</p>
-        </div>
+        <h2> This is the Home Page.</h2>
+        <p> Employees can click login to sign on to the management system or click signup to create an account.</p>
       </div>
     );
   }
