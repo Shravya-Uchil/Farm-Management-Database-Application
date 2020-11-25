@@ -50,6 +50,8 @@ class Signup extends Component {
       <div>
         <br />
         <div className="container">
+        <h1> This is the Signup Page.</h1>
+        <p> Employees can click home to return to the home page or click login to signin to their account.</p>
           <h2 id="signup">Sign up</h2>
           <br />
           <form onSubmit={this.onSubmit}>
