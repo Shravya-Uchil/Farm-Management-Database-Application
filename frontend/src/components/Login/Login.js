@@ -43,6 +43,8 @@ class Login extends Component {
   render() {
     return (
       <div class="container">
+        <h2> This is the Login Page.</h2>
+        <p> Employees can click home to return to the home page or click signup to create an account.</p>
         <div class="login-form">
           <div class="main-div">
             <div class="panel">
