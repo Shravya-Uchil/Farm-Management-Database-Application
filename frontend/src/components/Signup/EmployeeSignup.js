@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Signup extends Component {
+class EmployeeSignup extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,24 +14,25 @@ class Signup extends Component {
   };
 
   onSubmit = (e) => {
-    console.log('Submitting customer info');
+    console.log('Submitting EMPLOYEE info');
     //prevent page from refresh
     e.preventDefault();
-    console.log('P1:' + this.state.UPassword);
-    console.log('P2:' + this.state.UPasswordRe);
-    if (this.state.UPassword !== this.state.UPasswordRe) {
+    console.log('P1:' + this.state.EPassword);
+    console.log('P2:' + this.state.EPasswordRe);
+    if (this.state.EPassword !== this.state.EPasswordRe) {
       alert('Password miss match!!!');
       return;
     }
     const data = {
-      customer_name: this.state.UFName + ' ' + this.state.ULName,
-      email_id: this.state.UEmail,
-      password: this.state.UPassword,
+      emp_name: this.state.EFName + ' ' + this.state.ELName,
+      emp_designation: this.state.EDesignation,
+      email_id: this.state.EEmail,
+      password: this.state.EPassword,
     };
     axios.defaults.withCredentials = true;
     //make a post request with the user data
     axios
-      .post('http://localhost:3001/farm/signup/customer', data)
+      .post('http://localhost:3001/farm/signup/employee', data)
       .then((response) => {
         console.log('Status Code : ', response.status);
         if (response.status === 200) {
@@ -45,6 +46,7 @@ class Signup extends Component {
         alert('Failed to signup!!!');
       });
   };
+
   render() {
     return (
       <div>
@@ -57,9 +59,9 @@ class Signup extends Component {
               <input
                 type='text'
                 class='form-control'
-                name='UFName'
+                name='EFName'
                 onChange={this.onChange}
-                id='UFName'
+                id='EFName'
                 placeholder='First Name'
                 required
               />
@@ -69,9 +71,9 @@ class Signup extends Component {
               <input
                 type='text'
                 class='form-control'
-                name='ULName'
+                name='ELName'
                 onChange={this.onChange}
-                id='ULName'
+                id='ELName'
                 placeholder='Last Name'
                 required
               />
@@ -81,9 +83,21 @@ class Signup extends Component {
               <input
                 type='text'
                 class='form-control'
-                name='UEmail'
+                name='EDesignation'
                 onChange={this.onChange}
-                id='UEmail'
+                id='EDesignation'
+                placeholder='Designation'
+                required
+              />
+            </div>
+            <br />
+            <div style={{ width: '30%' }} class='form-group'>
+              <input
+                type='text'
+                class='form-control'
+                name='EEmail'
+                onChange={this.onChange}
+                id='EEmail'
                 placeholder='Email Id'
                 required
               />
@@ -93,9 +107,9 @@ class Signup extends Component {
               <input
                 type='password'
                 class='form-control'
-                name='UPassword'
+                name='EPassword'
                 onChange={this.onChange}
-                id='UPassword'
+                id='EPassword'
                 placeholder='Password'
                 required
               />
@@ -105,9 +119,9 @@ class Signup extends Component {
               <input
                 type='password'
                 class='form-control'
-                name='UPasswordRe'
+                name='EPasswordRe'
                 onChange={this.onChange}
-                id='UPasswordRe'
+                id='EPasswordRe'
                 placeholder='Re enter Password'
                 required
               />
@@ -125,4 +139,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default EmployeeSignup;
