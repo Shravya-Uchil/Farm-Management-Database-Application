@@ -27,6 +27,7 @@ class Signup extends Component {
       customer_name: this.state.UFName + ' ' + this.state.ULName,
       email_id: this.state.UEmail,
       password: this.state.UPassword,
+      customer_type: this.state.customer_type,
     };
     axios.defaults.withCredentials = true;
     //make a post request with the user data
@@ -111,6 +112,17 @@ class Signup extends Component {
                 placeholder='Re enter Password'
                 required
               />
+            </div>
+            <br />
+            <div style={{ width: '30%' }} class='form-group'>
+              <select
+                id='customer_type'
+                name='customer_type'
+                onChange={this.onChange}
+              >
+                <option value='Store'>Store</option>
+                <option value='Individual'>Individual</option>
+              </select>
             </div>
             <br />
             <div style={{ width: '30%' }}>

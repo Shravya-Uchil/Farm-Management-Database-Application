@@ -47,9 +47,13 @@ class Login extends Component {
           if (response.data.customer_id) {
             localStorage.setItem('customer_id', response.data.customer_id);
             localStorage.setItem('login_type', 0);
+            localStorage.setItem('customer_type', response.data.customer_type);
           } else {
             localStorage.setItem('employee_id', response.data.employee_id);
             localStorage.setItem('login_type', 1);
+            if (response.data.owner === 1) {
+              localStorage.setItem('isOwner', 1);
+            }
           }
           this.props.history.replace('/home');
         } else {

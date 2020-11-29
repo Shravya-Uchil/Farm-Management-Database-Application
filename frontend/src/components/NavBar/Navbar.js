@@ -20,12 +20,29 @@ class Navbar extends Component {
     if (cookie.load('cookie')) {
       console.log('Able to read cookie');
       let adminTab = null;
-      if (localStorage.getItem('admin')) {
-        adminTab = (
-          <Link to='' id='login-link'>
-            Edit DB
+      let custTab = null;
+      let rmTab = null;
+      if (localStorage.getItem('isOwner')) {
+        custTab = (
+          <Link to='/CustomerDetails' id='login-link'>
+            Customer Details
           </Link>
         );
+        adminTab = (
+          <Link to='/Crud' id='login-link'>
+            CRUD Ops
+          </Link>
+        );
+        rmTab = (
+          <Link to='/RawMaterialAdmin' id='login-link'>
+            Raw Materials
+          </Link>
+        );
+      }
+      let orderTag = '/CustomerOrder';
+
+      if (localStorage.getItem('employee_id')) {
+        orderTag = '/Orders';
       }
       navLogin = (
         <ul
@@ -33,22 +50,26 @@ class Navbar extends Component {
           id='login-icon'
         >
           <li>
-            <Link to='' id='login-link'>
+            <Link to='/AllCrops' id='login-link'>
               View items
             </Link>
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <li>
-            <Link to='' id='login-link'>
+            <Link to={orderTag} id='login-link'>
               Orders
             </Link>
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <li>
-            <Link to='' id='login-link'>
+            <Link to='/AllEvents' id='login-link'>
               Events
             </Link>
           </li>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <li>{custTab}</li>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <li>{rmTab}</li>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <li>{adminTab}</li>
           &nbsp;&nbsp;&nbsp;&nbsp;

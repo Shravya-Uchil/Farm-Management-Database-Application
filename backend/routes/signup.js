@@ -9,7 +9,7 @@ router.post('/customer', async (req, res) => {
   try {
     encryptedPassword = await bcrypt.hash(req.body.password, 12);
 
-    let sql_query = `CALL register_customer('${req.body.customer_name}', '${req.body.email_id}', '${encryptedPassword}');`;
+    let sql_query = `CALL register_customer('${req.body.customer_name}', '${req.body.email_id}', '${encryptedPassword}', '${req.body.customer_type}');`;
     pool.query(sql_query, (err, result) => {
       if (err) {
         console.log('Error:');

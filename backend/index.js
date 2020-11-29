@@ -53,10 +53,18 @@ app.get('/', function (req, res) {
 const login = require('./routes/login');
 const signup = require('./routes/signup');
 const employee = require('./routes/employee');
+const crop = require('./routes/crop');
+const event = require('./routes/event');
+const order = require('./routes/order');
+const admin = require('./routes/admin');
 
 app.use('/farm/login', login);
 app.use('/farm/signup', signup);
 app.use('/farm/employee', employee);
+app.use('/farm/crop', crop);
+app.use('/farm/event', event);
+app.use('/farm/order', order);
+app.use('/farm/admin', admin);
 
 //start your server on port 3001
 app.listen(3001);

@@ -3,23 +3,32 @@ import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import NavBar from '../NavBar/Navbar.js';
 import EmployeeHome from './EmployeeHome.js';
+import OwnerHome from './OwnerHome.js';
+import AllCrops from '../Customer/AllCrops.js';
 
 class Home extends Component {
   render() {
     let redirectVar = null;
     let home = null;
+    let navbar = null;
 
     if (localStorage.getItem('customer_id')) {
-      home = <EmployeeHome />;
+      home = <AllCrops />;
     } else if (localStorage.getItem('employee_id')) {
-      home = <EmployeeHome />;
+      if (localStorage.getItem('isOwner')) {
+        home = <OwnerHome />;
+        navbar = <NavBar />;
+      } else {
+        home = <EmployeeHome />;
+        navbar = <NavBar />;
+      }
     } else {
       redirectVar = <Redirect to='/login' />;
     }
     return (
       <div>
         {redirectVar}
-        <NavBar />
+        {navbar}
         {home}
       </div>
     );

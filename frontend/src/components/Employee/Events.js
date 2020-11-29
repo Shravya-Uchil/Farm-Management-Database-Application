@@ -6,12 +6,12 @@ import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 
-class Crops extends Component {
+class Events extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
-    this.onUpdate = this.onUpdate.bind(this);
-    this.getMyCrops = this.getMyCrops.bind(this);
+    this.onAdd = this.onAdd.bind(this);
+    this.getMyEvents = this.getMyEvents.bind(this);
   }
 
   onChange = (e) => {
@@ -21,13 +21,12 @@ class Crops extends Component {
   };
 
   enableForm = () => {
-    console.log('Enable form');
     this.setState({
       enableForm: 1,
     });
   };
 
-  getMyCrops() {
+  getMyEvents() {
     console.log('employee id');
     console.log(localStorage.getItem('employee_id'));
     this.setState({
@@ -35,14 +34,14 @@ class Crops extends Component {
     });
     axios
       .get(
-        `http://localhost:3001/farm/employee/crops/get/${localStorage.getItem(
+        `http://localhost:3001/farm/employee/events/get/${localStorage.getItem(
           'employee_id'
         )}`
       )
       .then((response) => {
         if (response.data) {
           this.setState({
-            crops: response.data,
+            events: response.data,
           });
         }
       })
@@ -52,31 +51,31 @@ class Crops extends Component {
   }
 
   componentWillMount() {
-    this.getMyCrops();
+    this.getMyEvents();
   }
 
-  onUpdate = (e) => {
+  onAdd = (e) => {
     e.preventDefault();
     let data = {
-      crop_id: this.state.crop_id,
+      event_name: this.state.event_name,
       employee_id: localStorage.getItem('employee_id'),
-      crop_qty: this.state.crop_qty,
-      harvest_status: this.state.harvest_status,
-      crop_status: this.state.crop_status,
+      date: this.state.date,
+      event_description: this.state.event_description,
+      price: this.state.price,
     };
     axios
-      .post(`http://localhost:3001/farm/employee/crops/update`, data)
+      .post(`http://localhost:3001/farm/employee/events/add`, data)
       .then((response) => {
         if (response.status === 200) {
-          alert('Updated crop');
-          this.getMyCrops();
+          alert('Event added');
+          this.getMyEvents();
         } else {
-          alert('Failed to update crop');
+          alert('Failed to add event');
         }
       })
       .catch((error) => {
         console.log(error);
-        alert('Failed to update crop');
+        alert('Failed to add event');
       });
   };
 
@@ -87,67 +86,70 @@ class Crops extends Component {
     if (!cookie.load('cookie')) {
       redirectVar = <Redirect to='/login' />;
     }
-    if (this.state && this.state.crops) {
-      //data = JSON.stringify(this.state.crops, undefined, 4);
-      data = this.state.crops.map((crop) => {
+    if (this.state && this.state.events) {
+      data = this.state.events.map((event) => {
         return (
           <tr>
-            <td>{JSON.stringify(crop, undefined, 4)}</td>
+            <td>{JSON.stringify(event, undefined, 4)}</td>
           </tr>
         );
       });
     }
     if (this.state && this.state.enableForm) {
       formTag = (
-        <form onSubmit={this.onUpdate}>
+        <form onSubmit={this.onAdd}>
           <div style={{ width: '30%' }} class='form-group'>
+            <label for='event_name'>Event Name</label>
             <input
               type='text'
               class='form-control'
-              name='crop_id'
+              name='event_name'
               onChange={this.onChange}
-              id='crop_id'
-              placeholder='Crop Id'
+              id='event_name'
+              placeholder='Event Name'
               required
             />
           </div>
           <br />
           <div style={{ width: '30%' }} class='form-group'>
+            <label for='event_description'>Event Description</label>
             <input
               type='text'
               class='form-control'
-              name='crop_qty'
+              name='event_description'
               onChange={this.onChange}
-              id='crop_qty'
-              placeholder='Crop Quantity'
+              id='event_description'
+              placeholder='Event Description'
             />
           </div>
           <br />
           <div style={{ width: '30%' }} class='form-group'>
+            <label for='date'>Event Date</label>
             <input
-              type='text'
+              type='date'
               class='form-control'
-              name='harvest_status'
+              name='date'
               onChange={this.onChange}
-              id='harvest_status'
-              placeholder='Crop Harvest Status'
+              id='date'
+              placeholder='Event Date'
             />
           </div>
           <br />
           <div style={{ width: '30%' }} class='form-group'>
+            <label for='price'>Event Cost</label>
             <input
               type='text'
               class='form-control'
-              name='crop_status'
+              name='price'
               onChange={this.onChange}
-              id='crop_status'
-              placeholder='Crop Status'
+              id='price'
+              placeholder='Event Cost'
             />
           </div>
           <br />
           <div style={{ width: '30%' }}>
             <button class='btn btn-success' type='submit'>
-              Update
+              Add Event
             </button>
           </div>
         </form>
@@ -160,13 +162,13 @@ class Crops extends Component {
         <div class='login-form'>
           <br />
           <br />
-          <h3>My Crops</h3>
+          <h3>My Events</h3>
           <br />
           <br />
           <table class='table'>
             <thead>
               <tr>
-                <th>Crops</th>
+                <th>Events</th>
               </tr>
             </thead>
             <tbody>
@@ -177,10 +179,8 @@ class Crops extends Component {
           <br />
           <br />
           <button onClick={this.enableForm} class='btn btn-primary'>
-            Update Crops
+            Add Event
           </button>
-          <br />
-          <br />
           {formTag}
         </div>
       </div>
@@ -188,4 +188,4 @@ class Crops extends Component {
   }
 }
 
-export default Crops;
+export default Events;

@@ -6,12 +6,12 @@ import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 
-class Crops extends Component {
+class Orders extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
-    this.getMyCrops = this.getMyCrops.bind(this);
+    this.getMyOrders = this.getMyOrders.bind(this);
   }
 
   onChange = (e) => {
@@ -21,28 +21,21 @@ class Crops extends Component {
   };
 
   enableForm = () => {
-    console.log('Enable form');
     this.setState({
       enableForm: 1,
     });
   };
 
-  getMyCrops() {
-    console.log('employee id');
-    console.log(localStorage.getItem('employee_id'));
+  getMyOrders() {
     this.setState({
       enableForm: 0,
     });
     axios
-      .get(
-        `http://localhost:3001/farm/employee/crops/get/${localStorage.getItem(
-          'employee_id'
-        )}`
-      )
+      .get(`http://localhost:3001/farm/order/all/`)
       .then((response) => {
         if (response.data) {
           this.setState({
-            crops: response.data,
+            orders: response.data,
           });
         }
       })
@@ -52,31 +45,28 @@ class Crops extends Component {
   }
 
   componentWillMount() {
-    this.getMyCrops();
+    this.getMyOrders();
   }
 
   onUpdate = (e) => {
     e.preventDefault();
     let data = {
-      crop_id: this.state.crop_id,
-      employee_id: localStorage.getItem('employee_id'),
-      crop_qty: this.state.crop_qty,
-      harvest_status: this.state.harvest_status,
-      crop_status: this.state.crop_status,
+      order_id: this.state.order_id,
+      order_status: this.state.order_status,
     };
     axios
-      .post(`http://localhost:3001/farm/employee/crops/update`, data)
+      .post(`http://localhost:3001/farm/order/update`, data)
       .then((response) => {
         if (response.status === 200) {
-          alert('Updated crop');
-          this.getMyCrops();
+          alert('Order updated');
+          this.getMyOrders();
         } else {
-          alert('Failed to update crop');
+          alert('Failed to update order');
         }
       })
       .catch((error) => {
         console.log(error);
-        alert('Failed to update crop');
+        alert('Failed to update order');
       });
   };
 
@@ -87,12 +77,11 @@ class Crops extends Component {
     if (!cookie.load('cookie')) {
       redirectVar = <Redirect to='/login' />;
     }
-    if (this.state && this.state.crops) {
-      //data = JSON.stringify(this.state.crops, undefined, 4);
-      data = this.state.crops.map((crop) => {
+    if (this.state && this.state.orders) {
+      data = this.state.orders.map((order) => {
         return (
           <tr>
-            <td>{JSON.stringify(crop, undefined, 4)}</td>
+            <td>{JSON.stringify(order, undefined, 4)}</td>
           </tr>
         );
       });
@@ -101,53 +90,33 @@ class Crops extends Component {
       formTag = (
         <form onSubmit={this.onUpdate}>
           <div style={{ width: '30%' }} class='form-group'>
+            <label for='order_id'>Order ID</label>
             <input
               type='text'
               class='form-control'
-              name='crop_id'
+              name='order_id'
               onChange={this.onChange}
-              id='crop_id'
-              placeholder='Crop Id'
+              id='order_id'
+              placeholder='Order ID'
               required
             />
           </div>
           <br />
           <div style={{ width: '30%' }} class='form-group'>
+            <label for='order_status'>Order Status</label>
             <input
               type='text'
               class='form-control'
-              name='crop_qty'
+              name='order_status'
               onChange={this.onChange}
-              id='crop_qty'
-              placeholder='Crop Quantity'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='harvest_status'
-              onChange={this.onChange}
-              id='harvest_status'
-              placeholder='Crop Harvest Status'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='crop_status'
-              onChange={this.onChange}
-              id='crop_status'
-              placeholder='Crop Status'
+              id='order_status'
+              placeholder='Order Status'
             />
           </div>
           <br />
           <div style={{ width: '30%' }}>
             <button class='btn btn-success' type='submit'>
-              Update
+              Update Order
             </button>
           </div>
         </form>
@@ -160,13 +129,13 @@ class Crops extends Component {
         <div class='login-form'>
           <br />
           <br />
-          <h3>My Crops</h3>
+          <h3>Orders</h3>
           <br />
           <br />
           <table class='table'>
             <thead>
               <tr>
-                <th>Crops</th>
+                <th>All Orders</th>
               </tr>
             </thead>
             <tbody>
@@ -177,10 +146,8 @@ class Crops extends Component {
           <br />
           <br />
           <button onClick={this.enableForm} class='btn btn-primary'>
-            Update Crops
+            Update Order
           </button>
-          <br />
-          <br />
           {formTag}
         </div>
       </div>
@@ -188,4 +155,4 @@ class Crops extends Component {
   }
 }
 
-export default Crops;
+export default Orders;
