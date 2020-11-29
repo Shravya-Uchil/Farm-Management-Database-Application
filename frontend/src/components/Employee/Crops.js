@@ -5,6 +5,8 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table1 from './Table1'
+
 
 class Crops extends Component {
   constructor(props) {
@@ -153,6 +155,7 @@ class Crops extends Component {
         </form>
       );
     }
+
     return (
       <div class='container'>
         {redirectVar}
@@ -170,8 +173,9 @@ class Crops extends Component {
               </tr>
             </thead>
             <tbody>
-              {/*Display the Tbale row based on data recieved*/}
-              {data}
+              {/*Display the Table row based on data recieved*/}
+              <Table1 data={data}/>
+              {/* {data} */}
             </tbody>
           </table>
           <br />
