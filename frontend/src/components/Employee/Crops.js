@@ -182,7 +182,6 @@ class Crops extends Component {
             <tbody>
               {/*Display the Table row based on data recieved*/}
               <Table1 data={tabledata}/>
-              {/* {data} */}
             </tbody>
           </table>
           <br />

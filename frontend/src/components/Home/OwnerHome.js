@@ -5,6 +5,12 @@ import { Button } from 'react-bootstrap';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import Table11 from './Table11'
+import Table12 from './Table12'
+import Table13 from './Table13'
+import Table14 from './Table14'
+import Table15 from './Table15'
+
 
 //Define a Login Component
 class OwnerHome extends Component {
@@ -132,6 +138,13 @@ class OwnerHome extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.topSoldCrops)
+    {
+      tabledata = this.state.topSoldCrops;
+    }
+
     if (this.state && this.state.topProfitCrops) {
       topProfitCrops = this.state.topProfitCrops.map((crop) => {
         return (
@@ -141,6 +154,14 @@ class OwnerHome extends Component {
         );
       });
     }
+
+    let tabledata2 = [];
+    if (this.state && this.state.topProfitCrops)
+    {
+      tabledata2 = this.state.topProfitCrops;
+    }
+
+
     if (this.state && this.state.leastSoldCrops) {
       leastSoldCrops = this.state.leastSoldCrops.map((crop) => {
         return (
@@ -150,6 +171,13 @@ class OwnerHome extends Component {
         );
       });
     }
+
+    let tabledata1 = [];
+    if (this.state && this.state.leastSoldCrops)
+    {
+      tabledata1 = this.state.leastSoldCrops;
+    }
+
     if (this.state && this.state.RMBelowThreshold) {
       RMBelowThreshold = this.state.RMBelowThreshold.map((rm) => {
         return (
@@ -159,6 +187,13 @@ class OwnerHome extends Component {
         );
       });
     }
+
+    let tabledata3 = [];
+    if (this.state && this.state.RMBelowThreshold)
+    {
+      tabledata3 = this.state.RMBelowThreshold;
+    }
+
     if (this.state && this.state.topRegisteredEvents) {
       topRegisteredEvents = this.state.topRegisteredEvents.map((evt) => {
         return (
@@ -168,6 +203,13 @@ class OwnerHome extends Component {
         );
       });
     }
+
+    let tabledata4 = [];
+    if (this.state && this.state.topRegisteredEvents)
+    {
+      tabledata4 = this.state.topRegisteredEvents;
+    }
+
     if (this.state && this.state.topCostOrders) {
       topCostOrders = this.state.topCostOrders.map((ord) => {
         return (
@@ -177,6 +219,13 @@ class OwnerHome extends Component {
         );
       });
     }
+
+    let tabledata5 = [];
+    if (this.state && this.state.topCostOrders)
+    {
+      tabledata5 = this.state.topCostOrders;
+    }
+
     return (
       <div class='container'>
         {redirectVar}
@@ -195,7 +244,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {topSoldCrops}
+                <Table11 data={tabledata}/>
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -207,7 +256,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {leastSoldCrops}
+                <Table11 data={tabledata1}/>
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -219,7 +268,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {topProfitCrops}
+                <Table12 data={tabledata2}/>
               </tbody>
             </table>
           </div>
@@ -227,12 +276,12 @@ class OwnerHome extends Component {
             <table class='table'>
               <thead>
                 <tr>
-                  <th>Depleting Raw Materials!!</th>
+                  <th>Depleting Raw Materials!!!</th>
                 </tr>
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {RMBelowThreshold}
+                <Table13 data={tabledata3}/>
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -244,7 +293,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {topRegisteredEvents}
+                <Table14 data={tabledata4}/>
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -256,7 +305,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {topCostOrders}
+                <Table15 data={tabledata5}/>
               </tbody>
             </table>
           </div>
