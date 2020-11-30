@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table2 from './Table2'
 
 class Events extends Component {
   constructor(props) {
@@ -95,6 +96,13 @@ class Events extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.events)
+    {
+      tabledata = this.state.events;
+    }
+
     if (this.state && this.state.enableForm) {
       formTag = (
         <form onSubmit={this.onAdd}>
@@ -173,7 +181,7 @@ class Events extends Component {
             </thead>
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
-              {data}
+              <Table2 data={tabledata}/>
             </tbody>
           </table>
           <br />

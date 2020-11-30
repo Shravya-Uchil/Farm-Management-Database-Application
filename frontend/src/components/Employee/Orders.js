@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table3 from './Table3'
 
 class Orders extends Component {
   constructor(props) {
@@ -86,6 +87,13 @@ class Orders extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.orders)
+    {
+      tabledata = this.state.orders;
+    }
+
     if (this.state && this.state.enableForm) {
       formTag = (
         <form onSubmit={this.onUpdate}>
@@ -140,7 +148,7 @@ class Orders extends Component {
             </thead>
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
-              {data}
+              <Table3 data={tabledata}/>
             </tbody>
           </table>
           <br />

@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table10 from './Table10'
 
 class CustomerOrder extends Component {
   constructor(props) {
@@ -52,6 +53,13 @@ class CustomerOrder extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.myOrders)
+    {
+      tabledata = this.state.myOrders;
+    }
+
     return (
       <div class='container'>
         {redirectVar}
@@ -70,6 +78,7 @@ class CustomerOrder extends Component {
             </thead>
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
+              <Table10 data={tabledata}/>
               {data}
             </tbody>
           </table>

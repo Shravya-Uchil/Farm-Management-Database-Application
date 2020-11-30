@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table8 from './Table8'
 
 class RawMaterialAdmin extends Component {
   constructor(props) {
@@ -47,6 +48,12 @@ class RawMaterialAdmin extends Component {
       });
     }
 
+    let tabledata = [];
+    if (this.state && this.state.allRawMaterial)
+    {
+      tabledata = this.state.allRawMaterial;
+    }
+
     return (
       <div class='container'>
         {redirectVar}
@@ -66,7 +73,7 @@ class RawMaterialAdmin extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {allRM}
+                <Table8 data={tabledata}/>
               </tbody>
             </table>
           </div>

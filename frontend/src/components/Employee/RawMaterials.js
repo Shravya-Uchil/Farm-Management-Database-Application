@@ -5,6 +5,8 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table4 from './Table4'
+import Table5 from './Table5'
 
 class RawMaterials extends Component {
   constructor(props) {
@@ -171,6 +173,19 @@ class RawMaterials extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.allRawMaterial)
+    {
+      tabledata = this.state.allRawMaterial;
+    }
+
+    let tabledata1 = [];
+    if (this.state && this.state.myRawMaterial)
+    {
+      tabledata1 = this.state.myRawMaterial;
+    }
+
     if (this.state && this.state.enableAddForm) {
       addFormTag = (
         <form onSubmit={this.onAdd}>
@@ -266,7 +281,7 @@ class RawMaterials extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {allRM}
+                <Table4 data={tabledata}/>
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -278,7 +293,7 @@ class RawMaterials extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                {myRM}
+                <Table5 data={tabledata1}/>
               </tbody>
             </table>
           </div>

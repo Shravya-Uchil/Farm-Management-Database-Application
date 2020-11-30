@@ -99,6 +99,13 @@ class Crops extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.crops)
+    {
+      tabledata = this.state.crops;
+    }
+
     if (this.state && this.state.enableForm) {
       formTag = (
         <form onSubmit={this.onUpdate}>
@@ -174,7 +181,7 @@ class Crops extends Component {
             </thead>
             <tbody>
               {/*Display the Table row based on data recieved*/}
-              <Table1 data={data}/>
+              <Table1 data={tabledata}/>
               {/* {data} */}
             </tbody>
           </table>

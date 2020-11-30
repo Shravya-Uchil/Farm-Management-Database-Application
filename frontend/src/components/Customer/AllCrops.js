@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import Table6 from './Table6'
 
 class AllCrops extends Component {
   constructor(props) {
@@ -190,6 +191,13 @@ class AllCrops extends Component {
         );
       });
     }
+
+    let tabledata = [];
+    if (this.state && this.state.crops)
+    {
+      tabledata = this.state.crops;
+    }
+
     return (
       <div class='container'>
         {redirectVar}
@@ -208,7 +216,7 @@ class AllCrops extends Component {
             </thead>
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
-              {data}
+              <Table6 data={tabledata}/>
             </tbody>
           </table>
           <br />
