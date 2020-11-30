@@ -10,7 +10,6 @@ router.post('/customer', (req, res) => {
   /*if (type === 0) {
     sql_query = `CALL get_user('${req.body.email_id}');`;
   }*/
-  console.log(req.body);
   if (type === 1) {
     sql_query = `CALL get_employee('${req.body.email_id}');`;
   }
