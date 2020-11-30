@@ -1,3 +1,4 @@
+// SJSU CMPE 226 Fall 2020 TEAM3
 const express = require('express');
 const router = express.Router();
 const pool = require('../mysqlDB.js');

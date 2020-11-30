@@ -1,3 +1,4 @@
+// SJSU CMPE 226 Fall 2020 TEAM3
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import '../../../node_modules/react-bootstrap-table/css/react-bootstrap-table.css';

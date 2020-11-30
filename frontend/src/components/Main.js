@@ -1,3 +1,4 @@
+// SJSU CMPE 226 Fall 2020 TEAM3
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home/Home';

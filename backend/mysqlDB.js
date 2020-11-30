@@ -1,3 +1,4 @@
+// SJSU CMPE 226 Fall 2020 TEAM3
 var mysql = require('mysql');
 var connection = mysql.createPool({
   // host: "localhost",

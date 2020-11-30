@@ -1,3 +1,4 @@
+-- SJSU CMPE 226 Fall 2020 TEAM3
 CREATE DATABASE  IF NOT EXISTS `farm-mgmt`
 USE `farm-mgmt`;
 
