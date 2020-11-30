@@ -26,7 +26,7 @@ class Table1 extends Component {
           <TableHeaderColumn dataField='selling_price' width='150'>
             Selling Price
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='harvest_status' wwidth='150'>
+          <TableHeaderColumn dataField='harvest_status' width='150'>
             Harvest Status
           </TableHeaderColumn>
           <TableHeaderColumn dataField='discount' width='150'>
