@@ -8,13 +8,13 @@ class Table12 extends Component {
     return (
       <div>
         <BootstrapTable class='table-responsive' data={this.props.data}>
-          <TableHeaderColumn isKey dataField='crop_id' width='15%'>
+          <TableHeaderColumn isKey dataField='crop_id' width='150'>
             ID
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='crop_name'>
+          <TableHeaderColumn dataField='crop_name' width='150'>
             Crop Name
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='Profit'>
+          <TableHeaderColumn dataField='Profit' width='150'>
             Profit
           </TableHeaderColumn>
         </BootstrapTable>

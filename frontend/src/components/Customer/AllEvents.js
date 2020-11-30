@@ -141,12 +141,12 @@ class AllEvents extends Component {
             </thead>
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
-              {/* <Table7 data={tabledata}/> */}
+              <Table7 data={tabledata}/>
               {data}
             </tbody>
           </table>
-          <br />
-          <br />
+          <br/>
+          <br/>
         </div>
       </div>
     );

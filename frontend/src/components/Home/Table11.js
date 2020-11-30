@@ -7,14 +7,14 @@ class Table11 extends Component {
   render() {
     return (
       <div>
-        <BootstrapTable class='table-responsive' data={this.props.data}>
-          <TableHeaderColumn isKey dataField='crop_id' width='15%'>
+        <BootstrapTable data={this.props.data}>
+          <TableHeaderColumn isKey dataField='crop_id' width='150'>
             ID
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='crop_name' width='50%'>
+          <TableHeaderColumn dataField='crop_name' width='150'>
             Crop Name
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='item_purchased_qty'>
+          <TableHeaderColumn dataField='item_purchased_qty' width='150'>
             Item Purchased Qty
           </TableHeaderColumn>
         </BootstrapTable>

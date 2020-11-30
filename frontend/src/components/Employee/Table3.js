@@ -8,19 +8,19 @@ class Table3 extends Component {
     return (
       <div>
         <BootstrapTable class='table-responsive-xl' data={this.props.data} width='100%'>
-          <TableHeaderColumn isKey dataField='order_id' width='5%'>
+          <TableHeaderColumn isKey dataField='order_id' width='150'>
             ID
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='order_status'>
+          <TableHeaderColumn dataField='order_status' width='150'>
             Order Status
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='order_date'>
+          <TableHeaderColumn dataField='order_date' width='150'>
             Order Date
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='total_price'>
+          <TableHeaderColumn dataField='total_price' width='150'>
             Order Total
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='customer_id'>
+          <TableHeaderColumn dataField='customer_id' width='150'>
             Customer ID
           </TableHeaderColumn>
         </BootstrapTable>

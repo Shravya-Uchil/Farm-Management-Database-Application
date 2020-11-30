@@ -217,6 +217,7 @@ class AllCrops extends Component {
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
               <Table6 data={tabledata}/>
+              {data}
             </tbody>
           </table>
           <br />
