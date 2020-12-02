@@ -1,4 +1,5 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 const express = require('express');
 const router = express.Router();
 const pool = require('../mysqlDB.js');
@@ -28,7 +29,8 @@ router.get('/crops/get/:employee_id', (req, res) => {
 router.post('/crops/update', async (req, res) => {
   console.log('Update crops');
   console.log(req.body);
-  let sql = `CALL update_crop('${req.body.crop_qty}', '${req.body.harvest_status}', '${req.body.crop_status}' ,'${req.body.employee_id}', '${req.body.crop_id}');`;
+  let sql = `CALL update_crop('${req.body.crop_qty}', '${req.body.harvest_status}', '${req.body.crop_status}' ,
+  '${req.body.employee_id}', '${req.body.crop_id}');`;
   pool.query(sql, (err, result) => {
     if (err) {
       console.log('Error:');
@@ -209,7 +211,7 @@ router.post('/rawmaterials/update', async (req, res) => {
       res.end(result[0][0].status);
     } else if (
       (result && result.length > 0 && result[0][0].status === 'INVALID') ||
-      result[0][0].status === 'NO RECORD'
+      result[0][0].status === 'NO_RECORD'
     ) {
       res.writeHead(401, {
         'Content-Type': 'text/plain',

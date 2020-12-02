@@ -1,4 +1,5 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -8,13 +9,9 @@ router.post('/customer', (req, res) => {
   console.log('Login');
   var type = req.body.type;
   let sql_query = `CALL get_user('${req.body.email_id}');`;
-  /*if (type === 0) {
-    sql_query = `CALL get_user('${req.body.email_id}');`;
-  }*/
   if (type === 1) {
     sql_query = `CALL get_employee('${req.body.email_id}');`;
   }
-
   db.query(sql_query, async (err, result) => {
     if (err) {
       console.log('Error:' + err);

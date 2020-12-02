@@ -1,4 +1,5 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 import React, { Component } from 'react';
 import '../../App.css';
 import { Link } from 'react-router-dom';
@@ -6,17 +7,34 @@ import { Button } from 'react-bootstrap';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import axios from 'axios';
-import Table11 from './Table11'
-import Table12 from './Table12'
-import Table13 from './Table13'
-import Table14 from './Table14'
-import Table15 from './Table15'
-
+import Table11 from './Table11';
+import Table12 from './Table12';
+import Table13 from './Table13';
+import Table14 from './Table14';
+import Table15 from './Table15';
 
 //Define a Login Component
 class OwnerHome extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      total_profit: 0,
+    };
+  }
+
+  getTotalProfit() {
+    axios
+      .get(`http://localhost:3001/farm/admin/totalprofit`)
+      .then((response) => {
+        if (response.data) {
+          this.setState({
+            total_profit: response.data[0].total_profit,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getTopSoldCrops() {
@@ -110,6 +128,7 @@ class OwnerHome extends Component {
   }
 
   componentWillMount() {
+    this.getTotalProfit();
     this.getTopSoldCrops();
     this.getTopProfitCrops();
     this.getLeastSoldCrops();
@@ -141,8 +160,7 @@ class OwnerHome extends Component {
     }
 
     let tabledata = [];
-    if (this.state && this.state.topSoldCrops)
-    {
+    if (this.state && this.state.topSoldCrops) {
       tabledata = this.state.topSoldCrops;
     }
 
@@ -157,11 +175,9 @@ class OwnerHome extends Component {
     }
 
     let tabledata2 = [];
-    if (this.state && this.state.topProfitCrops)
-    {
+    if (this.state && this.state.topProfitCrops) {
       tabledata2 = this.state.topProfitCrops;
     }
-
 
     if (this.state && this.state.leastSoldCrops) {
       leastSoldCrops = this.state.leastSoldCrops.map((crop) => {
@@ -174,8 +190,7 @@ class OwnerHome extends Component {
     }
 
     let tabledata1 = [];
-    if (this.state && this.state.leastSoldCrops)
-    {
+    if (this.state && this.state.leastSoldCrops) {
       tabledata1 = this.state.leastSoldCrops;
     }
 
@@ -190,8 +205,7 @@ class OwnerHome extends Component {
     }
 
     let tabledata3 = [];
-    if (this.state && this.state.RMBelowThreshold)
-    {
+    if (this.state && this.state.RMBelowThreshold) {
       tabledata3 = this.state.RMBelowThreshold;
     }
 
@@ -206,8 +220,7 @@ class OwnerHome extends Component {
     }
 
     let tabledata4 = [];
-    if (this.state && this.state.topRegisteredEvents)
-    {
+    if (this.state && this.state.topRegisteredEvents) {
       tabledata4 = this.state.topRegisteredEvents;
     }
 
@@ -222,8 +235,7 @@ class OwnerHome extends Component {
     }
 
     let tabledata5 = [];
-    if (this.state && this.state.topCostOrders)
-    {
+    if (this.state && this.state.topCostOrders) {
       tabledata5 = this.state.topCostOrders;
     }
 
@@ -236,6 +248,7 @@ class OwnerHome extends Component {
           <h3>Welcome to the Farm Management Webpage</h3>
           <br />
           <br />
+          <h2> Total Profit: ${this.state.total_profit}</h2>
           <div class='d-flex flex-row'>
             <table class='table'>
               <thead>
@@ -245,7 +258,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table11 data={tabledata}/>
+                <Table11 data={tabledata} />
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -257,7 +270,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table11 data={tabledata1}/>
+                <Table11 data={tabledata1} />
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -269,7 +282,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table12 data={tabledata2}/>
+                <Table12 data={tabledata2} />
               </tbody>
             </table>
           </div>
@@ -282,7 +295,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table13 data={tabledata3}/>
+                <Table13 data={tabledata3} />
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -294,7 +307,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table14 data={tabledata4}/>
+                <Table14 data={tabledata4} />
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -306,7 +319,7 @@ class OwnerHome extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table15 data={tabledata5}/>
+                <Table15 data={tabledata5} />
               </tbody>
             </table>
           </div>

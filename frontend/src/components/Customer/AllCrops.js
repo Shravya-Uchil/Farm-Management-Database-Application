@@ -1,4 +1,5 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 import React, { Component } from 'react';
 import '../../App.css';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,7 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-import Table6 from './Table6'
+import Table6 from './Table6';
 
 class AllCrops extends Component {
   constructor(props) {
@@ -41,8 +42,12 @@ class AllCrops extends Component {
   };
 
   getAllCrops() {
+    let axiosLink = 'http://localhost:3001/farm/crop/all';
+    if (localStorage.getItem('customer_id')) {
+      axiosLink = 'http://localhost:3001/farm/crop/allavailable';
+    }
     axios
-      .get(`http://localhost:3001/farm/crop/all/`)
+      .get(axiosLink)
       .then((response) => {
         if (response.data) {
           this.setState({
@@ -194,8 +199,7 @@ class AllCrops extends Component {
     }
 
     let tabledata = [];
-    if (this.state && this.state.crops)
-    {
+    if (this.state && this.state.crops) {
       tabledata = this.state.crops;
     }
 
@@ -217,7 +221,7 @@ class AllCrops extends Component {
             </thead>
             <tbody>
               {/*Display the Tbale row based on data recieved*/}
-              <Table6 data={tabledata}/>
+              <Table6 data={tabledata} />
               {data}
             </tbody>
           </table>

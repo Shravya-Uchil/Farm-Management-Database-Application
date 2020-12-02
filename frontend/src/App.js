@@ -1,4 +1,5 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 import React, { Component } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 

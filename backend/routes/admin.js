@@ -1,7 +1,29 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 const express = require('express');
 const router = express.Router();
 const pool = require('../mysqlDB.js');
+
+router.get('/totalprofit', (req, res) => {
+  console.log('Get total profit');
+  let sql_query = `CALL total_profit();`;
+  pool.query(sql_query, (err, result) => {
+    if (err) {
+      console.log('Error:');
+      console.log(err);
+      res.writeHead(500, {
+        'Content-Type': 'text/plain',
+      });
+      res.end('Error in Data');
+    }
+    if (result && result.length > 0 && result[0][0]) {
+      res.writeHead(200, {
+        'Content-Type': 'text/plain',
+      });
+      res.end(JSON.stringify(result[0]));
+    }
+  });
+});
 
 router.get('/topSoldCrops', (req, res) => {
   console.log('Get sold crops');
@@ -264,7 +286,7 @@ router.post('/CreateEvent', (req, res) => {
   });
 });
 
-router.get('/UpdateCrop', (req, res) => {
+router.post('/UpdateCrop', (req, res) => {
   console.log('update_crop_admin');
   let sql_query = `CALL update_crop_admin ('${req.body.crop_id}','${req.body.crop_name}', '${req.body.quantity}', '${req.body.cost_price}', '${req.body.crop_status}', '${req.body.selling_price}', '${req.body.harvest_status}', '${req.body.discount}')`;
   pool.query(sql_query, (err, result) => {
@@ -286,7 +308,7 @@ router.get('/UpdateCrop', (req, res) => {
   });
 });
 
-router.get('/UpdateRaw_Material', (req, res) => {
+router.post('/UpdateRaw_Material', (req, res) => {
   console.log('update_rawmaterial_admin');
   let sql_query = `CALL update_rawmaterial_admin('${req.body.raw_material_id}','${req.body.raw_material_name}', '${req.body.raw_material_quantity}', '${req.body.qty_threshold}', '${req.body.price}', '${req.body.raw_material_provider_id}');`;
   pool.query(sql_query, (err, result) => {
@@ -308,7 +330,7 @@ router.get('/UpdateRaw_Material', (req, res) => {
   });
 });
 
-router.get('/UpdateRaw_Material_Provider', (req, res) => {
+router.post('/UpdateRaw_Material_Provider', (req, res) => {
   console.log('update_rawmaterialprovider_admin');
   let sql_query = `CALL update_rawmaterialprovider_admin('${req.body.raw_material_provider_id}','${req.body.rmp_name}');`;
   pool.query(sql_query, (err, result) => {
@@ -330,7 +352,7 @@ router.get('/UpdateRaw_Material_Provider', (req, res) => {
   });
 });
 
-router.get('/UpdateEvent', (req, res) => {
+router.post('/UpdateEvent', (req, res) => {
   console.log('update_event_admin');
   let sql_query = `CALL update_event_admin('${req.body.event_id}', ${req.body.event_name}','${req.body.description}','${req.body.price}','${req.body.date}','${req.body.total_count}');`;
   pool.query(sql_query, (err, result) => {
@@ -374,7 +396,7 @@ router.post('/DeleteCrop', (req, res) => {
   });
 });
 
-router.get('/DeleteRaw_Material', (req, res) => {
+router.post('/DeleteRaw_Material', (req, res) => {
   console.log('delete_rawmaterial_admin');
   let sql_query = `CALL delete_rawmaterial_admin('${req.body.raw_material_id}');`;
   pool.query(sql_query, (err, result) => {
@@ -396,7 +418,7 @@ router.get('/DeleteRaw_Material', (req, res) => {
   });
 });
 
-router.get('/DeleteRaw_Material_Provider', (req, res) => {
+router.post('/DeleteRaw_Material_Provider', (req, res) => {
   console.log('delete_rawmaterialprovider_admin');
   let sql_query = `CALL delete_rawmaterialprovider_admin('${req.body.raw_material_provider_id}');`;
   pool.query(sql_query, (err, result) => {
@@ -418,7 +440,7 @@ router.get('/DeleteRaw_Material_Provider', (req, res) => {
   });
 });
 
-router.get('/DeleteEvent', (req, res) => {
+router.post('/DeleteEvent', (req, res) => {
   console.log('delete_event_admin');
   let sql_query = `CALL delete_event_admin('${req.body.event_id}')`;
   pool.query(sql_query, (err, result) => {

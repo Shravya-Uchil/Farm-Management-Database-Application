@@ -1,4 +1,5 @@
-// SJSU CMPE 226 Fall 2020 TEAM3
+// SJSU CMPE 226 Fall2020TEAM3
+
 import React, { Component } from 'react';
 import '../../App.css';
 import { Link } from 'react-router-dom';
@@ -44,8 +45,11 @@ class Crud extends Component {
       showrawmaterialTag: false,
       showrawmaterialProvTag: false,
       table: '',
-      crudOp: 'Create',
     });
+
+    if (this.state && this.state.crudOp === '') {
+      this.setState({ crudOp: 'Create' });
+    }
     switch (e.target.value) {
       case 'Crop':
         this.setState({
@@ -91,103 +95,115 @@ class Crud extends Component {
   getCropTag() {
     let cropTag = null;
     let hidden = false;
+    let del = false;
     if (this.state.crudOp === 'Create') {
       hidden = true;
-      cropTag = (
-        <form>
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='crop_id'
-              id='crop_id'
-              placeholder='Crop ID'
-              required
-              disabled={hidden}
-              onChange={this.onChange}
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='crop_name'
-              id='crop_name'
-              placeholder='Crop Name'
-              required
-              onChange={this.onChange}
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='quantity'
-              onChange={this.onChange}
-              id='quantity'
-              placeholder='Crop Quantity'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='cost_price'
-              onChange={this.onChange}
-              id='cost_price'
-              placeholder='Crop Cost Price'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='selling_price'
-              onChange={this.onChange}
-              id='selling_price'
-              placeholder='Crop Selling Price'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='harvest_status'
-              onChange={this.onChange}
-              id='harvest_status'
-              placeholder='Crop Harvest Status'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='crop_status'
-              onChange={this.onChange}
-              id='crop_status'
-              placeholder='Crop Status'
-            />
-          </div>
-          <br />
-          <div style={{ width: '30%' }} class='form-group'>
-            <input
-              type='text'
-              class='form-control'
-              name='discount'
-              onChange={this.onChange}
-              id='discount'
-              placeholder='Discount'
-            />
-          </div>
-        </form>
-      );
     }
+
+    if (this.state.crudOp === 'Delete') {
+      del = true;
+    }
+    cropTag = (
+      <form>
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='crop_id'
+            id='crop_id'
+            placeholder='Crop ID'
+            required
+            disabled={hidden}
+            onChange={this.onChange}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='crop_name'
+            id='crop_name'
+            placeholder='Crop Name'
+            required
+            onChange={this.onChange}
+            disabled={del}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='quantity'
+            onChange={this.onChange}
+            id='quantity'
+            placeholder='Crop Quantity'
+            disabled={del}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='cost_price'
+            onChange={this.onChange}
+            id='cost_price'
+            placeholder='Crop Cost Price'
+            disabled={del}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='selling_price'
+            onChange={this.onChange}
+            id='selling_price'
+            placeholder='Crop Selling Price'
+            disabled={del}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='harvest_status'
+            onChange={this.onChange}
+            id='harvest_status'
+            placeholder='Crop Harvest Status'
+            disabled={del}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='crop_status'
+            onChange={this.onChange}
+            id='crop_status'
+            placeholder='Crop Status'
+            disabled={del}
+          />
+        </div>
+        <br />
+        <div style={{ width: '30%' }} class='form-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='discount'
+            onChange={this.onChange}
+            id='discount'
+            placeholder='Discount'
+            disabled={del}
+          />
+        </div>
+      </form>
+    );
 
     return cropTag;
   }
@@ -195,8 +211,12 @@ class Crud extends Component {
   getEventTag() {
     let eventTag = null;
     let hidden = false;
+    let del = false;
     if (this.state && this.state.crudOp === 'Create') {
       hidden = true;
+    }
+    if (this.state.crudOp === 'Delete') {
+      del = true;
     }
     eventTag = (
       <form>
@@ -222,6 +242,7 @@ class Crud extends Component {
             placeholder='Event Name'
             required
             onChange={this.onChange}
+            disabled={del}
           />
         </div>
         <br />
@@ -234,6 +255,7 @@ class Crud extends Component {
             class='form-control'
             onChange={this.onChange}
             placeholder='Event Eescription'
+            disabled={del}
           ></textarea>
         </div>
         <br />
@@ -245,6 +267,7 @@ class Crud extends Component {
             onChange={this.onChange}
             id='price'
             placeholder='Event Price'
+            disabled={del}
           />
         </div>
         <br />
@@ -256,6 +279,7 @@ class Crud extends Component {
             onChange={this.onChange}
             id='date'
             placeholder='Event Date'
+            disabled={del}
           />
         </div>
       </form>
@@ -266,8 +290,12 @@ class Crud extends Component {
   getRawmaterialTag() {
     let rmTag = null;
     let hidden = false;
+    let del = false;
     if (this.state && this.state.crudOp === 'Create') {
       hidden = true;
+    }
+    if (this.state.crudOp === 'Delete') {
+      del = true;
     }
     rmTag = (
       <form>
@@ -293,6 +321,7 @@ class Crud extends Component {
             placeholder='Raw Material Name'
             required
             onChange={this.onChange}
+            disabled={del}
           />
         </div>
         <br />
@@ -304,6 +333,7 @@ class Crud extends Component {
             onChange={this.onChange}
             id='raw_material_quantity'
             placeholder='Raw Material Quantity'
+            disabled={del}
           />
         </div>
         <br />
@@ -315,6 +345,7 @@ class Crud extends Component {
             onChange={this.onChange}
             id='qty_threshold'
             placeholder='Quantity Threshold'
+            disabled={del}
           />
         </div>
         <br />
@@ -326,6 +357,7 @@ class Crud extends Component {
             onChange={this.onChange}
             id='price'
             placeholder='Raw Material Price'
+            disabled={del}
           />
         </div>
         <br />
@@ -337,6 +369,7 @@ class Crud extends Component {
             onChange={this.onChange}
             id='raw_material_provider_id'
             placeholder='Raw Material Provider id'
+            disabled={del}
           />
         </div>
       </form>
@@ -346,8 +379,13 @@ class Crud extends Component {
   getEmployeeTag() {
     let empTag = null;
     let hidden = false;
+    let del = false;
     if (this.state && this.state.crudOp === 'Create') {
       hidden = true;
+      del = true;
+    }
+    if (this.state.crudOp === 'Delete') {
+      del = true;
     }
     empTag = (
       <form>
@@ -373,6 +411,7 @@ class Crud extends Component {
             placeholder='Employee Name'
             required
             onChange={this.onChange}
+            disabled={del}
           />
         </div>
         <br />
@@ -385,6 +424,7 @@ class Crud extends Component {
             placeholder='Employee Designation'
             required
             onChange={this.onChange}
+            disabled={del}
           />
         </div>
       </form>
@@ -395,8 +435,12 @@ class Crud extends Component {
   getRawmaterialProvTag() {
     let rmTag = null;
     let hidden = false;
+    let del = false;
     if (this.state && this.state.crudOp === 'Create') {
       hidden = true;
+    }
+    if (this.state.crudOp === 'Delete') {
+      del = true;
     }
     rmTag = (
       <form>
@@ -422,6 +466,7 @@ class Crud extends Component {
             placeholder='Raw Material Provider Name'
             required
             onChange={this.onChange}
+            disabled={del}
           />
         </div>
       </form>
@@ -502,6 +547,7 @@ class Crud extends Component {
     }
 
     console.log('POST DATATATATATATAT');
+    console.log(axiosLink);
     console.log(data);
 
     axios
@@ -570,6 +616,7 @@ class Crud extends Component {
                 name='table_type'
                 onChange={this.onTableChange}
               >
+                <option>Select Table</option>
                 <option value='Crop'>Crop</option>
                 <option value='Employee'>Employee</option>
                 <option value='Event'>Event</option>
@@ -583,6 +630,7 @@ class Crud extends Component {
             <div class='form-group'>
               Choose Operation:
               <select id='op_type' name='op_type' onChange={this.onOpChange}>
+                <option>Choose CRUD Operatoin</option>
                 <option value='Create'>Create</option>
                 <option value='Update'>Update</option>
                 <option value='Delete'>Delete</option>
