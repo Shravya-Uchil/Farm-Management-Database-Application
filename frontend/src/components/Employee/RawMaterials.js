@@ -6,8 +6,8 @@ import axios from 'axios';
 import NavBar from '../NavBar/Navbar.js';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-import Table4 from './Table4'
-import Table5 from './Table5'
+import Table4 from './Table4';
+import Table5 from './Table5';
 
 class RawMaterials extends Component {
   constructor(props) {
@@ -176,14 +176,12 @@ class RawMaterials extends Component {
     }
 
     let tabledata = [];
-    if (this.state && this.state.allRawMaterial)
-    {
+    if (this.state && this.state.allRawMaterial) {
       tabledata = this.state.allRawMaterial;
     }
 
     let tabledata1 = [];
-    if (this.state && this.state.myRawMaterial)
-    {
+    if (this.state && this.state.myRawMaterial) {
       tabledata1 = this.state.myRawMaterial;
     }
 
@@ -273,7 +271,8 @@ class RawMaterials extends Component {
           <h3>Raw Materials Home</h3>
           <br />
           <br />
-          <div class='d-flex flex-row'>
+          {/*<div class='d-flex flex-row'>*/}
+          <div>
             <table class='table'>
               <thead>
                 <tr>
@@ -282,10 +281,15 @@ class RawMaterials extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table4 data={tabledata}/>
+                <Table4 data={tabledata} />
               </tbody>
             </table>
-            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button onClick={this.enableAddForm} class='btn btn-primary'>
+              Purchase Raw Material
+            </button>
+            <br />
+          </div>
+          <div>
             <table class='table'>
               <thead>
                 <tr>
@@ -294,13 +298,17 @@ class RawMaterials extends Component {
               </thead>
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
-                <Table5 data={tabledata1}/>
+                <Table5 data={tabledata1} />
               </tbody>
             </table>
+            <button onClick={this.enableUpdateForm} class='btn btn-primary'>
+              Update Raw Material
+            </button>
           </div>
+          {/*</div>*/}
           <br />
           <br />
-          <div class='d-flex flex-row'>
+          {/* <div class='d-flex flex-row'>
             <button onClick={this.enableAddForm} class='btn btn-primary'>
               Purchase Raw Material
             </button>
@@ -308,7 +316,7 @@ class RawMaterials extends Component {
             <button onClick={this.enableUpdateForm} class='btn btn-primary'>
               Update Raw Material
             </button>
-          </div>
+    </div>*/}
           <br />
           <br />
           {addFormTag}

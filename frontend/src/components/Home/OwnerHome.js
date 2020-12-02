@@ -273,7 +273,9 @@ class OwnerHome extends Component {
                 <Table11 data={tabledata1} />
               </tbody>
             </table>
-            &nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <br />
+          <div class='d-flex flex-row'>
             <table class='table'>
               <thead>
                 <tr>
@@ -283,31 +285,6 @@ class OwnerHome extends Component {
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
                 <Table12 data={tabledata2} />
-              </tbody>
-            </table>
-          </div>
-          <div class='d-flex flex-row'>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th>Depleting Raw Materials!!!</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/*Display the Tbale row based on data recieved*/}
-                <Table13 data={tabledata3} />
-              </tbody>
-            </table>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th>Most Popular Events</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/*Display the Tbale row based on data recieved*/}
-                <Table14 data={tabledata4} />
               </tbody>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -320,6 +297,34 @@ class OwnerHome extends Component {
               <tbody>
                 {/*Display the Tbale row based on data recieved*/}
                 <Table15 data={tabledata5} />
+              </tbody>
+            </table>
+          </div>
+          <br />
+          <div class='d-flex flex-row'>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Depleting Raw Materials!!!</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/*Display the Tbale row based on data recieved*/}
+                <Table13 data={tabledata3} />
+              </tbody>
+            </table>
+          </div>
+          <br />
+          <div class='d-flex flex-row'>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Most Popular Events</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/*Display the Tbale row based on data recieved*/}
+                <Table14 data={tabledata4} />
               </tbody>
             </table>
           </div>
