@@ -1,11 +1,10 @@
 // SJSU CMPE 226 Fall 2020 TEAM3
 var mysql = require('mysql');
 var connection = mysql.createPool({
-  // host: "localhost",
-  host: 'database-1.crfdq7kjsupx.us-west-2.rds.amazonaws.com',
-  user: 'admin',
+  host: "localhost",
+  user: '',
   port: 3306,
-  password: 'farmpwd123',
+  password: '',
   database: 'farm-mgmt',
   insecureAuth: true,
 });
